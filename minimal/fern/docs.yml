@@ -1,0 +1,146 @@
+# yaml-language-server: $schema=https://schema.buildwithfern.dev/docs-yml.json
+
+instances:
+  - url: docs-templates-minimal.docs.buildwithfern.com # update this to {yourorg}.docs.buildwithfern.com
+    # custom-domain: plantstore.dev # specify your custom domain when you are ready to go live
+
+ai-search:
+  location:
+    - docs
+
+title: Fern Docs Starter (Styled)
+
+# Custom CSS example
+css:
+  - ./docs/css/global.css
+
+# Layout settings (no header, sidebar tabs/search)
+layout:
+  page-width: full
+  content-width: 40rem
+  disable-header: true
+
+# Tabs in sidebar
+tabs:
+  docs:
+    display-name: Documentation
+    icon: 'fa-solid fa-home'
+    slug: docs
+  api:
+    display-name: API Reference
+    icon: 'fa-solid fa-file-contract'
+    slug: reference
+  changelog:
+    display-name: Changelog
+    icon: 'fa-regular fa-clock'
+    slug: changelog
+  fork:
+    display-name: Fork this repo
+    icon: 'fa-brands fa-github'
+    href: https://github.com/fern-api/docs-starter
+  dashboard:
+    display-name: Dashboard
+    icon: 'fa-solid fa-gauge'
+    href: https://dashboard.buildwithfern.com
+
+navigation:
+  - tab: docs
+    layout:
+      - section: Get started
+        contents:
+          - page: Welcome
+            path: docs/pages/welcome.mdx
+            icon: fa-duotone fa-house
+          - page: Edit your docs
+            path: docs/pages/editing-your-docs.mdx
+            icon: fa-duotone fa-pen-to-square
+          - page: Write content
+            path: docs/pages/writing-content.mdx
+            icon: fa-duotone fa-file-lines
+          - page: Set up navigation
+            path: docs/pages/navigation.mdx
+            icon: fa-duotone fa-sitemap
+          - page: Customize your docs
+            path: docs/pages/customization.mdx
+            icon: fa-duotone fa-palette
+          - page: Support
+            path: docs/pages/support.mdx
+            icon: fa-duotone fa-headset
+  - tab: api
+    layout:
+      - section: Overview
+        contents:
+          - page: API reference
+            path: docs/pages/api-reference-overview.mdx
+            icon: fa-duotone fa-book
+      # This layout gives explicit control over sections, naming, and endpoint ordering.
+      # For a simpler way to organize by default OpenAPI tags instead, use:
+      #       - api: Plant Store API
+      #         flattened: true
+      - api: Plants
+        layout:
+          - endpoint: POST /plant
+          - endpoint: PUT /plant
+          - endpoint: GET /plant/{plantId}
+          - endpoint: GET /plant/search/status
+          - endpoint: GET /plant/search/tags
+          # Hide user endpoints from this section
+          - endpoint: GET /user/auth/login
+            hidden: true
+          - endpoint: GET /user/auth/logout
+            hidden: true
+          - endpoint: GET /user/{username}
+            hidden: true
+      - api: Users
+        layout:
+          - endpoint: GET /user/auth/login
+          - endpoint: GET /user/auth/logout
+          - endpoint: GET /user/{username}
+          # Hide plant endpoints from this section
+          - endpoint: POST /plant
+            hidden: true
+          - endpoint: PUT /plant
+            hidden: true
+          - endpoint: GET /plant/{plantId}
+            hidden: true
+          - endpoint: GET /plant/search/status
+            hidden: true
+          - endpoint: GET /plant/search/tags
+            hidden: true
+  - tab: changelog
+    layout:
+      - changelog: docs/changelog
+  - tab: fork
+  - tab: dashboard
+
+# Theme colors (matching classic template)
+colors:
+  accent-primary:
+    dark: "#70E155"
+    light: "#008700"
+  background:
+    dark: "#111113"
+    light: "#FFFFFF"
+  sidebar-background:
+    dark: "#111113"
+    light: "#FFFFFF"
+  header-background:
+    dark: "#111113"
+    light: "#FFFFFF"
+  card-background:
+    dark: "#111113"
+    light: "#FFFFFF"
+  border:
+    dark: "#444444"
+    light: "#E5E5E5"
+
+theme:
+  footer-nav: minimal
+
+logo:
+  dark: docs/assets/logo.svg
+  light: docs/assets/logo.svg
+  height: 20
+  href: https://buildwithfern.com
+
+favicon: docs/assets/favicon.svg
